@@ -44,6 +44,24 @@ services:
       - Elasticsearch  
     networks:
       - elk
+  Elastalert2:
+    image: jertel/elastalert2
+    container_name: elastalert2
+    restart: always
+    environment:
+      - "ES_HOST=elasticsearch"
+      - "ES_PORT=9200"
+      - "KIBANA_HOST=kibana:5601"
+    volumes:
+      - ./elastalert/config/config.yaml:/opt/elastalert/config.yaml
+      - ./elastalert/rules:/opt/elastalert/rules
+    depends_on:
+      - Elasticsearch
+    ports:
+      - "3030:3030"  # ElastAlert2 ´ëº¸µå÷(¼±Å »ç)
+    networks:
+      - elk
+
 volumes:
   elastic_data: {}
 

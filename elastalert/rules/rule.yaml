@@ -1,0 +1,12 @@
+name: Suricata Alert Rule
+type: any
+index: suricata-*½º
+filter:
+  - term:
+      event_type: "alert"
+alert:
+  - "slack"
+slack_webhook_url: "https://hooks.slack.com"
+alert_subject: "Suricata Alert Detected!"
+alert_text: "Suricata detected an alert"
+
