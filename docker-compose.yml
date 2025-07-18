@@ -21,7 +21,7 @@ services:
     restart: always
     volumes:
     - ./logstash/:/logstash_dir
-    - /home/ubuntu/suricata-compose/logs:/suricata_logs:ro
+    - /home/ubuntu/suricata/logs:/suricata_logs:ro
     command: logstash -f /logstash_dir/logstash.conf 
     depends_on:
       - Elasticsearch
@@ -44,6 +44,7 @@ services:
       - Elasticsearch  
     networks:
       - elk
+
   Elastalert2:
     image: jertel/elastalert2
     container_name: elastalert2
